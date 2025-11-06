@@ -11,7 +11,12 @@ function db_get_pdo(): PDO {
     $user = $config['username'];
     $pass = $config['password'];
 
-    $dsn = "mysql:host={$host};port={$port};dbname={$db};charset={$charset}";
+    $driver = $config['driver'] ?? 'mysql';
+    if ($driver === 'pgsql') {
+        $dsn = "pgsql:host={$host};port={$port};dbname={$db}";
+    } else {
+        $dsn = "mysql:host={$host};port={$port};dbname={$db};charset={$charset}";
+    }
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

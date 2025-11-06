@@ -1,0 +1,6 @@
+.replit
+replit.nix
+
+*.log
+.DS_Store
+Thumbs.db
